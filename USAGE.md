@@ -1,5 +1,28 @@
 # Usage Guide
 
+## Data Update
+
+### Auto-Update from FDA Website
+
+```bash
+run_update.bat
+```
+
+This script will:
+- Download latest Excel file from FDA
+- Compare with existing data
+- Download new PDFs (510(k) and De Novo only)
+- Re-download missing or corrupted PDFs
+- Update SQLite database
+- Create backup of old Excel file
+
+**Note:** PMA (P-prefix) PDFs cannot be auto-downloaded as they use different URL patterns.
+
+After update:
+```bash
+venv\Scripts\python.exe src\embed.py
+```
+
 ## Quick Start
 
 ### 1. Check Extraction Status

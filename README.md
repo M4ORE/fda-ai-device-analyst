@@ -2,12 +2,46 @@
 
 Comprehensive data platform for analyzing FDA-approved AI/ML-enabled medical devices with visualization dashboard and RAG-powered chatbot.
 
+## Data Source
+
+- **Excel File:** [FDA AI/ML-Enabled Device List](https://www.fda.gov/media/178540/download?attachment)
+- **Source Page:** [FDA - Artificial Intelligence-Enabled Medical Devices](https://www.fda.gov/medical-devices/software-medical-device-samd/artificial-intelligence-enabled-medical-devices)
+- **Last Updated:** Check FDA website for latest version
+
 ## Features
 
 - **Data Extraction**: Parse Excel metadata and PDF approval documents (1247 devices)
 - **Vector Database**: ChromaDB with Ollama embeddings for semantic search
 - **Visualization Dashboard**: Interactive Streamlit dashboard with filtering and charts
 - **RAG Chatbot**: Question-answering system using Ollama LLM
+
+## Data Update
+
+To update with the latest FDA data:
+
+```bash
+run_update.bat
+```
+
+Or manually:
+
+```bash
+venv\Scripts\python.exe src\update.py
+```
+
+This will:
+1. Download latest Excel from FDA website
+2. Compare with existing data to find new devices
+3. Check for missing or corrupted PDFs in existing data
+4. Download new PDFs from FDA servers
+5. Extract text and update SQLite database
+6. Backup old Excel and replace with new version
+
+After update, rebuild vector database:
+
+```bash
+venv\Scripts\python.exe src\embed.py
+```
 
 ## Setup
 
