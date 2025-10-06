@@ -1,4 +1,4 @@
-# FDA AI/ML Medical Devices Data Platform
+# FDA AI Device Analyst
 
 Comprehensive data platform for analyzing FDA-approved AI/ML-enabled medical devices with visualization dashboard and RAG-powered chatbot.
 
@@ -168,7 +168,7 @@ Excel + PDFs -> extract.py -> SQLite (metadata + full text)
 ## File Structure
 
 ```
-cch-20250929/
+fda-ai-device-analyst/
 ├── .env                    # Configuration
 ├── .gitignore
 ├── README.md
