@@ -104,7 +104,7 @@ Or:
 venv\Scripts\streamlit.exe run src\dashboard.py
 ```
 
-This launches a unified web interface with two pages:
+This launches a unified web interface with three pages:
 
 **Dashboard (Main Page)**
 - Timeline of device approvals
@@ -112,15 +112,31 @@ This launches a unified web interface with two pages:
 - Product code analysis
 - Search and filter
 
-**Chatbot (Secondary Page)**
+**Competition Analysis**
+- Competitive landscape by panel and product code
+- AI-powered classification filters (imaging modality, body region, clinical application)
+- Market share visualization and company statistics
+- Export capabilities for competitive intelligence
+
+**Chatbot**
 - RAG-powered Q&A using Ollama LLM
 - Semantic search through ChromaDB
 - Source citations from FDA documents
 
-Ask questions like:
-- "What AI/ML devices were approved for radiology?"
-- "Tell me about BriefCase-Triage device"
-- "Which companies have the most AI/ML device approvals?"
+## AI Classification (Optional)
+
+Enable advanced filtering by running LLM-powered classification:
+
+```bash
+run_classify.bat
+```
+
+This automatically tags each device with:
+- **Imaging Modality**: CT, MRI, X-ray, Ultrasound, etc.
+- **Body Region**: Brain, Heart, Chest, Liver, etc.
+- **Clinical Application**: Screening, Diagnosis, Treatment Planning, etc.
+
+**Time**: ~40-60 minutes for all devices | **Details**: See [CLASSIFICATION.md](CLASSIFICATION.md)
 
 ## Data Structure
 
@@ -137,6 +153,10 @@ Table: `devices`
 - pdf_pages
 - extracted_text
 - created_at
+- imaging_modality (AI-classified)
+- body_region (AI-classified)
+- clinical_application (AI-classified)
+- ai_tags_version
 
 ### Vector Database (`data/chroma/`)
 

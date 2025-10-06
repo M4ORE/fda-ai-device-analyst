@@ -41,9 +41,18 @@ class DataExtractor:
                 pdf_path TEXT,
                 pdf_pages INTEGER,
                 extracted_text TEXT,
-                created_at TEXT
+                created_at TEXT,
+                imaging_modality TEXT,
+                body_region TEXT,
+                clinical_application TEXT,
+                ai_tags_version TEXT
             )
         ''')
+
+        # Create indexes for competitive analysis
+        cursor.execute('CREATE INDEX IF NOT EXISTS idx_panel ON devices(panel)')
+        cursor.execute('CREATE INDEX IF NOT EXISTS idx_product_code ON devices(product_code)')
+        cursor.execute('CREATE INDEX IF NOT EXISTS idx_company ON devices(company)')
 
         conn.commit()
         conn.close()
