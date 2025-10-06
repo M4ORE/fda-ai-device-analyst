@@ -92,10 +92,10 @@ This creates `data/chroma/` vector store for RAG retrieval.
 
 ## Usage
 
-### Dashboard
+### Launch Application
 
 ```bash
-run_dashboard.bat
+run_app.bat
 ```
 
 Or:
@@ -104,23 +104,18 @@ Or:
 venv\Scripts\streamlit.exe run src\dashboard.py
 ```
 
-Features:
+This launches a unified web interface with two pages:
+
+**Dashboard (Main Page)**
 - Timeline of device approvals
 - Company and panel distribution
 - Product code analysis
 - Search and filter
 
-### Chatbot
-
-```bash
-run_chatbot.bat
-```
-
-Or:
-
-```bash
-venv\Scripts\streamlit.exe run src\chatbot.py
-```
+**Chatbot (Secondary Page)**
+- RAG-powered Q&A using Ollama LLM
+- Semantic search through ChromaDB
+- Source citations from FDA documents
 
 Ask questions like:
 - "What AI/ML devices were approved for radiology?"
@@ -185,12 +180,14 @@ cch-20250929/
 ├── src/
 │   ├── extract.py         # PDF extraction pipeline
 │   ├── embed.py           # Vector embedding builder
-│   ├── dashboard.py       # Visualization dashboard
-│   └── chatbot.py         # RAG chatbot
+│   ├── update.py          # Auto-update from FDA
+│   ├── dashboard.py       # Main page (visualization)
+│   └── pages/
+│       └── chatbot.py     # Secondary page (RAG chatbot)
 ├── summaries/             # PDF files (1241)
 ├── ai-ml-enabled-devices-excel.xlsx
-├── run_dashboard.bat
-└── run_chatbot.bat
+├── run_app.bat            # Launch web interface
+└── run_update.bat         # Update data from FDA
 ```
 
 ## Development Notes

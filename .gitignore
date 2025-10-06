@@ -13,6 +13,10 @@ data/
 *.db
 *.db-journal
 
+# PDFs (large files)
+summaries/
+*.zip
+
 # IDE
 .vscode/
 .idea/

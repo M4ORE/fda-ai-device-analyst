@@ -60,10 +60,10 @@ This will:
 - ~12,000-15,000 chunks total
 - Processing time: 10-30 minutes (depends on Ollama server)
 
-### 3. Launch Dashboard
+### 3. Launch Application
 
 ```bash
-run_dashboard.bat
+run_app.bat
 ```
 
 Or manually:
@@ -73,7 +73,9 @@ venv\Scripts\streamlit.exe run src\dashboard.py
 
 Access at: http://localhost:8501
 
-Features:
+This launches a unified web interface with two pages accessible via the sidebar:
+
+**Dashboard (Main Page)**
 - Timeline of device approvals over time
 - Top companies by device count
 - Panel distribution pie chart
@@ -81,18 +83,10 @@ Features:
 - Search by device name, company, or submission number
 - Interactive filtering by panel and year
 
-### 4. Launch Chatbot
-
-```bash
-run_chatbot.bat
-```
-
-Or manually:
-```bash
-venv\Scripts\streamlit.exe run src\chatbot.py
-```
-
-Access at: http://localhost:8501
+**Chatbot (Secondary Page)**
+- RAG-powered question answering
+- Semantic search through device documents
+- Source citations with metadata
 
 Example questions:
 - "What are the most common types of AI/ML devices in radiology?"
@@ -112,13 +106,11 @@ Step 2: Embed
   data/devices.db → src/embed.py → data/chroma/
   Status: Run after extraction completes
 
-Step 3: Visualize
-  data/devices.db → src/dashboard.py → Streamlit UI
-  Status: Ready (can run now with partial data)
-
-Step 4: Chat
-  data/chroma/ + Ollama → src/chatbot.py → RAG Q&A
-  Status: Run after embedding completes
+Step 3: Launch App
+  run_app.bat → Streamlit multipage interface
+  - Dashboard: data/devices.db → visualization
+  - Chatbot: data/chroma/ + Ollama → RAG Q&A
+  Status: Dashboard ready anytime, Chatbot after embedding
 ```
 
 ## Configuration
@@ -239,16 +231,22 @@ git reset --hard HEAD~1
 ## Development
 
 ### Add New Features to Dashboard
-Edit `src/dashboard.py` - it's a standard Streamlit app:
+Edit `src/dashboard.py` - it's the main page in the multipage app:
 - Add new charts in main()
 - Use plotly for interactive visualizations
 - Access data via load_data() function
 
 ### Modify RAG Behavior
-Edit `src/chatbot.py`:
+Edit `src/pages/chatbot.py` - it's the secondary page:
 - Change retrieval: modify retrieve_context() top_k parameter
 - Adjust prompt: edit prompt template in generate_response()
 - Add chat features: Streamlit session state in st.session_state
+
+### Add New Pages
+Create new files in `src/pages/`:
+- Files are auto-detected by Streamlit
+- Use numeric prefix for ordering (e.g., `3_Analysis.py`)
+- Each page is independent with its own session state
 
 ### Optimize Chunking
 Edit `.env`:
