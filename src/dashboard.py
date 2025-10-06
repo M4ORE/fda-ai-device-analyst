@@ -117,12 +117,13 @@ def main():
     with col2:
         st.subheader("Panel Distribution")
         panel_counts = filtered_df['panel'].value_counts()
-        fig_panels = px.pie(
-            values=panel_counts.values,
-            names=panel_counts.index,
-            title='Devices by Panel'
+        fig_panels = px.bar(
+            x=panel_counts.values,
+            y=panel_counts.index,
+            orientation='h',
+            labels={'x': 'Number of Devices', 'y': 'Panel'}
         )
-        fig_panels.update_layout(height=400)
+        fig_panels.update_layout(showlegend=False, height=400, yaxis={'categoryorder': 'total ascending'})
         st.plotly_chart(fig_panels, use_container_width=True)
 
     st.markdown("---")
