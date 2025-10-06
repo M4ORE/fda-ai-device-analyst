@@ -23,7 +23,7 @@ Excel + PDFs -> Extract & Parse -> SQLite + Vector DB -> Dashboard + RAG Chatbot
 - Store in SQLite for structured queries
 
 ### 2. Vector Database Layer
-- Embedding model: via Ollama API (http://m.m4ore.com:11436)
+- Embedding model: via Ollama API (http://localhost:11434)
 - Vector store: ChromaDB (local, persistent)
 - Chunking strategy: paragraph-based with metadata
 - Metadata: submission_number, company, device, date, panel

@@ -65,7 +65,7 @@ venv\Scripts\activate
 Edit `.env` file to configure Ollama endpoint and models:
 
 ```env
-OLLAMA_BASE_URL=http://m.m4ore.com:11436
+OLLAMA_BASE_URL=http://localhost:11434
 OLLAMA_MODEL=gpt-oss:latest
 EMBEDDING_MODEL=nomic-embed-text:latest
 ```
@@ -163,7 +163,7 @@ Excel + PDFs -> extract.py -> SQLite (metadata + full text)
 
 - **LLM**: gpt-oss:latest (20.9B, MXFP4)
 - **Embedding**: nomic-embed-text:latest (137M, F16)
-- **Endpoint**: http://m.m4ore.com:11436
+- **Endpoint**: http://localhost:11434
 
 ## File Structure
 

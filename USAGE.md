@@ -119,7 +119,7 @@ Edit `.env` to change settings:
 
 ```env
 # Ollama endpoint
-OLLAMA_BASE_URL=http://m.m4ore.com:11436
+OLLAMA_BASE_URL=http://localhost:11434
 
 # Models
 OLLAMA_MODEL=gpt-oss:latest           # LLM for chatbot
@@ -142,7 +142,7 @@ SQLITE_DB_PATH=./data/devices.db
 - Expected final count: ~1241 devices (6 may be missing due to corrupt PDFs)
 
 ### Embedding fails
-- Check Ollama endpoint: `curl http://m.m4ore.com:11436/api/tags`
+- Check Ollama endpoint: `curl http://localhost:11434/api/tags`
 - Verify model exists: Look for `nomic-embed-text:latest` in response
 - Network timeout: Increase timeout in src/embed.py if needed
 
